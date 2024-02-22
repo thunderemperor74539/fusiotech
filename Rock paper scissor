@@ -1,0 +1,41 @@
+import random
+
+print("Welcome to Rock, Paper, Scissors!")
+
+# Initialize scores
+player_wins = 0
+computer_wins = 0
+
+while True:
+    # Take user input
+    user_action = input("Enter a choice (rock, paper, scissors): ")
+
+    # Generate computer's choice
+    choices = ["rock", "paper", "scissors"]
+    computer_action = random.choice(choices)
+
+    print(f"\nYou chose {user_action}, computer chose {computer_action}.")
+
+    # Determine the winner
+    if user_action == computer_action:
+        print(f"Both players selected {user_action}. It's a tie!")
+    elif (
+        (user_action == "rock" and computer_action == "scissors")
+        or (user_action == "paper" and computer_action == "rock")
+        or (user_action == "scissors" and computer_action == "paper")
+    ):
+        print("You win this round!")
+        player_wins += 1
+    else:
+        print("Computer wins this round!")
+        computer_wins += 1
+
+    # Display current scores
+    print(f"Player 1: {player_wins} | Computer: {computer_wins}")
+
+    # Ask if the user wants to play again
+    play_again = input("Do you want to play again? (yes/no): ")
+    if play_again.lower() != "yes":
+        break
+
+print("Thanks for playing! Have a great day!")
