@@ -1,0 +1,59 @@
+# Cricket Score Display Application
+
+# Initialize match data (you can fetch this from a reliable source)
+match_details = {
+    "date": "2024-02-22",
+    "teams": ("Team A", "Team B"),
+    "league": "IPL",
+    "link": "https://example.com/match123",
+}
+
+# Initialize runs scored (you can update these during the match)
+runs_scored = {
+    "Team A": 150,
+    "Team B": 130,
+}
+
+def print_match_statistics():
+    print(f"Match Date: {match_details['date']}")
+    print(f"Teams: {match_details['teams'][0]} vs. {match_details['teams'][1]}")
+    print(f"League: {match_details['league']}")
+    print(f"Match Link: {match_details['link']}")
+
+def print_runs_scored():
+    for team, runs in runs_scored.items():
+        print(f"{team}: {runs} runs")
+
+def update_score():
+    team = input("Enter team name: ")
+    runs = int(input("Enter runs scored: "))
+    runs_scored[team] = runs
+
+def show_results():
+    winner = max(runs_scored, key=runs_scored.get)
+    print(f"{winner} won the match!")
+
+# Main menu
+while True:
+    print("\nCricket Score Display")
+    print("1. Print Match Statistics")
+    print("2. Print Runs Scored")
+    print("3. Update Score")
+    print("4. Show Results")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1/2/3/4/5): ")
+
+    if choice == "1":
+        print_match_statistics()
+    elif choice == "2":
+        print_runs_scored()
+    elif choice == "3":
+        update_score()
+    elif choice == "4":
+        show_results()
+    elif choice == "5":
+        print("Thank you for using the Cricket Score Display Application.")
+        break
+    else:
+        print("Invalid choice. Please select a valid option.")
