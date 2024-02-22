@@ -1,0 +1,65 @@
+# Bank Management System
+
+# Initialize an empty dictionary to store account details
+accounts = {}
+
+def create_account():
+    account_number = input("Enter a unique account number: ")
+    name = input("Enter account holder's name: ")
+    initial_balance = float(input("Enter initial deposit amount: "))
+
+    # Create an account dictionary
+    account = {
+        "name": name,
+        "balance": initial_balance
+    }
+
+    # Store the account using the account number as the key
+    accounts[account_number] = account
+    print(f"Account created successfully. Account number: {account_number}")
+
+def transfer_money():
+    sender_account = input("Enter your account number: ")
+    recipient_account = input("Enter recipient's account number: ")
+    amount = float(input("Enter the transfer amount: "))
+
+    # Validate account numbers
+    if sender_account not in accounts or recipient_account not in accounts:
+        print("Invalid account number(s).")
+        return
+
+    # Update balances
+    accounts[sender_account]["balance"] -= amount
+    accounts[recipient_account]["balance"] += amount
+    print("Transfer successful.")
+
+def check_balance():
+    account_number = input("Enter your account number: ")
+
+    if account_number in accounts:
+        balance = accounts[account_number]["balance"]
+        print(f"Your account balance: ${balance:.2f}")
+    else:
+        print("Invalid account number.")
+
+# Main menu
+while True:
+    print("\nBank Management System")
+    print("1. Create Account")
+    print("2. Transfer Money")
+    print("3. Check Balance")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1/2/3/4): ")
+
+    if choice == "1":
+        create_account()
+    elif choice == "2":
+        transfer_money()
+    elif choice == "3":
+        check_balance()
+    elif choice == "4":
+        print("Thank you for using our Bank Management System.")
+        break
+    else:
+        print("Invalid choice. Please select a valid option.")
